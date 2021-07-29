@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+    <title>Confirm symptoms</title>
+    </head> 
+    <body bgcolor="#D1C4E9">
+        <h1>Confirm your symptoms</h1>
+        <form action="/your-disease-re" method="POST">
+                {% for symptom in final_symptoms %}
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" checked="checked" value="{{ symptom }}" id="defaultCheck1" name="disease_checkbox">
+                <label style="font-size: x-large;" class="form-check-label" for="defaultCheck1">
+                    {{ symptom }}
+                </label>
+                </div>
+                {% endfor %}
+            <br><br>
+            <center>  
+                <button style="background-color:goldenrod;width: 110px;height: 50px;font-size: larger;border-radius: 25px;" type="submit" class="btn btn-primary btn-lg">PROCEED</button>
+            </center>
+        </form>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Symptoms</title>
+    <link rel="stylesheet" href="static/style.css" >
+    <ul>
+      <li><a href="/ab">ABOUT</a></li>
+      <li><a href="/">HOME</a></li>
+    </ul> 
+    <meta charset="UTF-8">
+    <meta name="=viewport" content="width=device-width,initial-scale=1">
+    <style>
+      .output{
+        width: 80%;
+        height: 25 px;
+        font-size: 20px;
+        margin-top: 100px;
+      }
+      .start-btn{
+        display: inline-block;
+        background-color:goldenrod;
+        display: inline-table;
+        width: 200px;
+        height: 50px;
+        border-radius: 25px;
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        font-style: bold;
+        font-size: 20px;
+      }
+      .end-btn{
+        display: inline-block;
+        background-color:goldenrod;
+        border-radius: 25px;
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        font-style: bold;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body background="static/symptom.jpg">
+   <form action="/your-disease" method="POST">
+    <textarea class="output" placeholder="Describe your symptoms", name="symptoms_input"></textarea>
+    <br><br>
+    <button type="submit" class="end-btn">Submit</button>
+  </form>
+  <div>
+    <button class="start-btn">Start Recording</button>
+  </div>
+  <script>
+    class SpeechRecognitionApi {
+    constructor(options) {
+        const SpeechToText = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.speechApi = new SpeechToText();
+        this.output = options.output ? options.output : document.createElement("div");
+        this.speechApi.continuous = true;
+        this.speechApi.interimResult = false;
+        this.speechApi.onresult = (event) => {
+            var resultIndex = event.resultIndex;
+            var transcript = event.results[resultIndex][0].transcript;
+            this.output.textContent += transcript;
+        }
+    }
+    init() {
+        this.speechApi.start();
+    }
+    stop() {
+    this.speechApi.stop();
+    }
+}
+window.onload = function() {
+    var speech = new SpeechRecognitionApi({
+        output: document.querySelector(".output")
+    })
+
+    document.querySelector(".start-btn").addEventListener("click", () => {
+        speech.init();
+    })
+    document.querySelector(".end-btn").addEventListener("click", () => {
+        speech.stop();
+    })
+}
+  </script>
+  </body>
+</html>

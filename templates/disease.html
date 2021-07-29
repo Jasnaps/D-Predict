@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<center><h1> You may have:</h1></center><br>
+<center><h2>
+    <ol>
+    {% for disease in diseases %} 
+        {{ disease }}
+    {% endfor %}
+    </ol></h2>
+    <br>
+    <br>
+    <center>
+        <a href="/"><button type="button" class="btn btn-primary btn-lg">Home Page</button></a>
+    </center>
+{% endblock %}
